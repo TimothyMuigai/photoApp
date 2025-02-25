@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Photo</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6 flex justify-center items-center min-h-screen">
+    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+
+        <!-- Go Back Button -->
+        <a href="#" class="inline-block text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded-md mb-4">
+            ← Go Back
+        </a>
+
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Add a New Photo</h2>
+
+        <form method="POST" action="" enctype="multipart/form-data" class="space-y-4">
+
+            <!-- Photo Title -->
+            <div>
+                <label class="block text-gray-700 font-medium">Title</label>
+                <input required name="title" type="text" placeholder="Enter photo title"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-gray-700 font-medium">Description</label>
+                <textarea required name="description" placeholder="Enter a description"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none resize-none"></textarea>
+            </div>
+
+            <!-- Tags -->
+            <div>
+                <label class="block text-gray-700 font-medium">Tags (comma separated)</label>
+                <input name="tags" type="text" placeholder="e.g., nature, travel, landscape"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+            </div>
+
+            <!-- Select Category -->
+            <div>
+                <label class="block text-gray-700 font-medium">Select a Category</label>
+                <select name="category"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+                    <option value="none">Select a category...</option>
+                    <option value="nature">Nature</option>
+                    <option value="travel">Travel</option>
+                    <option value="urban">Urban</option>
+                </select>
+            </div>
+
+            <!-- Create New Category -->
+            <div>
+                <label class="block text-gray-700 font-medium">Create a New Category</label>
+                <input name="category_new" type="text" placeholder="Enter a new category name"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+            </div>
+
+            <!-- Upload Image & Preview -->
+            <div>
+                <label class="block text-gray-700 font-medium">Upload Image</label>
+                <input required name="images" type="file" id="imageInput" accept="image/*" multiple
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none cursor-pointer">
+                
+                <!-- Image Preview -->
+                <div id="previewContainer" class="mt-4 hidden">
+                    <p class="text-gray-600 text-sm">Preview:</p>
+                    <img id="imagePreview" class="mt-2 w-full h-52 object-cover rounded-lg shadow-md" alt="Image Preview">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-blue-600 text-white font-medium py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                Add Photo
+            </button>
+
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("imageInput").addEventListener("change", function (event) {
+            const previewContainer = document.getElementById("previewContainer");
+            const imagePreview = document.getElementById("imagePreview");
+
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.classList.remove("hidden");
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

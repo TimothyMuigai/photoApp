@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Photo Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+<div class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
+    <div class="max-w-2xl w-full bg-white shadow-lg rounded-lg p-6">
+
+        <!-- Go Back Button -->
+        <a href="{% url 'home' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
+            &larr; Go Back
+        </a>
+
+        <!-- Photo Section -->
+        <div class="mt-5">
+            <img class="w-full h-96 object-cover rounded-lg shadow-md" src="{{ photo.image.url }}" alt="Kiwi Delight">
+
+            <div class="mt-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <h2 class="text-2xl font-bold text-gray-800">{{ photo.title }}</h2>
+
+                        <!-- Tags -->
+                        <div class="flex space-x-1">
+                            {% for tag in tags %}
+                                <span class="bg-{{ tag.color }} text-white px-2 py-1 text-xs rounded-full">{{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        {% if user in photo.likes.all %}
+                            <img class="w-7 h-7" src="{% static 'images/dislike.png' %}" alt="liked icon">
+                        {% else %}
+                            <img class="w-7 h-7" src="{% static 'images/heart.png' %}" alt="like icon">
+                        {% endif %}
+                            <span class="ml-1 text-sm">Likes: {{ photo.like_count }}</span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p class="text-gray-600 mt-2">{{ photo.description }}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>
