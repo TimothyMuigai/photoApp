@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from decouple import config
 import cloudinary
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,16 +84,21 @@ WSGI_APPLICATION = 'photoApp_project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DATABASE_ENGINE'),
-        'NAME':  config('DATABASE_NAME'),
-        'USER':  config('DATABASE_USER'),
-        'PASSWORD':  config('DATABASE_PASSWORD'),
-        'HOST':  config('DATABASE_HOST'),
-        'PORT':  config('DATABASE_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DATABASE_ENGINE'),
+#         'NAME':  config('DATABASE_NAME'),
+#         'USER':  config('DATABASE_USER'),
+#         'PASSWORD':  config('DATABASE_PASSWORD'),
+#         'HOST':  config('DATABASE_HOST'),
+#         'PORT':  config('DATABASE_PORT'),
+#     }
+# }
+
+DATABASES = { 
+   # the link here is the external link provided on postgresql web service db 
+   "default": dj_database_url.parse('postgresql://photo_app_wp5c_user:QlKvo5Qx7XhkflJ8XUmPijTcPwvOOLU3@dpg-cuussr2j1k6c73a2319g-a.oregon-postgres.render.com/photo_app_wp5c') 
+} 
 
 # Cloudinary configs
 cloudinary.config(

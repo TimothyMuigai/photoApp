@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 from cloudinary.models import CloudinaryField
 from django.conf import settings
-from django.utils.timezone import now
 
 # Create your models here.
 
