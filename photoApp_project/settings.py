@@ -104,7 +104,7 @@ DATABASES = {
 cloudinary.config(
     cloud_name ='devs9of9t',
     api_key = '467163262231854',
-    api_secret = config('CLOUDINARY_API_SECRET')
+    api_secret = '4P-vkWII2oCHoTwbRys1ZimNPCI'
 )
 
 
